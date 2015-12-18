@@ -22,7 +22,7 @@ Please execute 'NCSim_main.m' using MATLAB
 
 1. F. Dabek, R. Cox, and F. Kaashoek. Vivaldi: A Decentralized Network Coordinate System. In Proc. of ACM SIGCOMM, 2004.
 2. G. Wang, B. Zhang, T.S.E. Ng. Towards Network Triangle Inequality Violation Aware Distributed Systems. In Proc. of ACM IMC, 2007.
-3. Y. Chen, X. Wang, C. Shi, E.K. Lua, X. Fu, B. Deng, X. Li. Phoenix: A Weight-based Network Coordinate System Using Matrix Factorization. To appear in IEEE Transactions on Network and Service Management, 2011, 8(4).
+3. Y. Chen, X. Wang, C. Shi, E.K. Lua, X. Fu, B. Deng, X. Li. Phoenix: A Weight-based Network Coordinate System Using Matrix Factorization. IEEE Transactions on Network and Service Management, 2011, 8(4):334-347.
 4. Y. Liao, P. Geurts and G. Leduc. Network Distance Prediction Based on Decentralized Matrix Factorization. Proc. of IFIP Networking 2010.
 5. Y. Mao, L. Saul, and J. M. Smith. IDES: An Internet Distance Estimation Service for Large Network. IEEE Journal on Selected Areas in Communications (JSAC), 2006.
 
