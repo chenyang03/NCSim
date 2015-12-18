@@ -3,7 +3,7 @@
 Simulator for Decentralized Network Coordinate Algorithms (NCSim) 
 v1.0.0 
 
-Author: Yang Chen (ychen@cs.duke.edu)
+Author: Yang Chen (chenyang@fudan.edu.cn)
 
 
 == Overview ==
