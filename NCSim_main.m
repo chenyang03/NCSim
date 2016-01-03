@@ -99,7 +99,7 @@ if (re_cdf_on == 1)
         total_rank_accuracy_vivaldi = [total_rank_accuracy_vivaldi; vivaldi_rank_accuracy];
                
 
-        % NC: DMF
+        % NC: DMFSGD
         %[out_all, in_all, fperr] = NCS_DMF(DATA, default_dimension, 32, 100, 50, 0);
         [out_all, in_all] = NCS_DMFSGD(DATA, 32);
         predicted_matrix = out_all * in_all; 
