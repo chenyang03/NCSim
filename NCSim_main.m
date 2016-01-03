@@ -3,10 +3,10 @@ function NCSim_main()
 % Simulator for Decentralized Network Coordinate Algorithms (NCSim) 
 %
 % 
-% Version 1.0.0
-% Updated on Nov. 26, 2011
+% Version 1.1.0
+% Updated on Jan. 3, 2016
 % 
-% Copyright (C) <2011> by Yang Chen, Duke University (ychen@cs.duke.edu)
+% Copyright (C) <2011-2016> by Yang Chen, Fudan University (chenyang@fudan.edu.cn)
 % 
 % Permission is hereby granted, free of charge, to any person obtaining a copy
 % of this software and associated documentation files (the "Software"), to deal
@@ -42,10 +42,8 @@ load('data_matrix.mat');
 %   used in many Network Coordinate papers
 
 % DATA = PL; % PlanetLab data set (small)
-% DATA = Toread; % PlanetLab data set (big)
-DATA = king_matrix; % King data set
-
-
+DATA = Toread; % PlanetLab data set (big)
+% DATA = king_matrix; % King data set
 
 
 % parameters of NCSim
@@ -102,12 +100,13 @@ if (re_cdf_on == 1)
                
 
         % NC: DMF
-        [out_all, in_all, fperr] = NCS_DMF(DATA, default_dimension, 32, 100, 50, 0);
+        %[out_all, in_all, fperr] = NCS_DMF(DATA, default_dimension, 32, 100, 50, 0);
+        [out_all, in_all] = NCS_DMFSGD(DATA, 32);
         predicted_matrix = out_all * in_all; 
         rerr = relative_error(predicted_matrix, DATA);
         %median(rerr)
         output_re = store_re(rerr', 1, 1000);  total_re_dmf = [total_re_dmf; output_re];
-        fprintf('DMF: %.2f ', NPRE(rerr));
+        fprintf('DMFSGD: %.2f ', NPRE(rerr));
         [dmf_rank_accuracy] = rank_accuracy(predicted_matrix, DATA);
         total_rank_accuracy_dmf = [total_rank_accuracy_dmf; dmf_rank_accuracy];
 %         
@@ -139,7 +138,7 @@ if (re_cdf_on == 1)
     h0 = plot(0:1, [0.9 0.9], 'r:');hold on;
     
     xlabel('Relative Error', 'FontSize', 16);ylabel('Cumulative Distribution Function', 'FontSize', 16);axis([0 1 0 1]);
-    h5=legend('Phoenix', 'Vivaldi', 'DMF', 'IDES', 4);set(h5, 'FontSize', 16);
+    h5=legend('Phoenix', 'Vivaldi', 'DMFSGD', 'IDES', 'Location', 'SouthEast');set(h5, 'FontSize', 16);
     RE_filename = 'NCSim_RECDF_';
     tmp_size = length(DATA);
     RE_filename = strcat(RE_filename, num2str(tmp_size));
@@ -155,7 +154,7 @@ if (re_cdf_on == 1)
     h4 = semilogx(percentage_vec, mean(total_rank_accuracy_ides), 'r-.');set(h4, 'LineWidth', 2);hold on;
     xlabel('Fraction of Shortest Paths to Predict (Log Scale)', 'FontSize', 16);ylabel('Cumulative Distribution Function', 'FontSize', 16);
     axis([1/100*0.9 1 0 1]);
-    h5=legend('Phoenix', 'Vivaldi', 'DMF', 'IDES', 4);set(h5, 'FontSize', 16);
+    h5=legend('Phoenix', 'Vivaldi', 'DMFSGD', 'IDES',  'Location', 'SouthEast');set(h5, 'FontSize', 16);
     RE_filename = 'Ranking_Accuracy_';
     tmp_size = length(DATA);
     RE_filename = strcat(RE_filename, num2str(tmp_size));
@@ -166,7 +165,7 @@ if (re_cdf_on == 1)
     vivaldi_fpre = seek_percentage(mean(total_re_vivaldi), 0.5);vivaldi_npre = seek_percentage(mean(total_re_vivaldi), 0.9);
     dmf_fpre = seek_percentage(mean(total_re_dmf), 0.5);dmf_npre = seek_percentage(mean(total_re_dmf), 0.9);
     ides_fpre = seek_percentage(mean(total_re_ides), 0.5);ides_npre = seek_percentage(mean(total_re_ides), 0.9);
-    fprintf('\nVivaldi|IDES|DMF|Phoenix');
+    fprintf('\nVivaldi|IDES|DMFSGD|Phoenix');
     fprintf('\n50th Percentile RE: %.3f %.3f %.3f %.3f\n', vivaldi_fpre, ides_fpre, dmf_fpre, phoenix_fpre);
     fprintf('90th Percentile RE: %.3f %.3f %.3f %.3f\n', vivaldi_npre, ides_npre, dmf_npre, phoenix_npre);
     
