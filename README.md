@@ -18,7 +18,7 @@ Systems: Vivaldi (random), Vivaldi (height), Vivaldi (TIV aware), Phoenix, DMFSG
 Evaluation Metrics: Relative Error, Rank Accuracy
 Datasets: PL (169 nodes from Planetlab testbed), Toread (335 nodes from Planetlab testbed), King (1740 nodes)
 
-Please run 'NCSim_main.m' using MATLAB
+Please run 'src/NCSim_main.m' using MATLAB
 
 ## References
 
